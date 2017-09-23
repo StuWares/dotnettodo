@@ -11,7 +11,21 @@ namespace AspNetCoreTodo.Services
 
         {
             // Return an array of TodoItems
-            
+            IEnumerable<TodoItem> items = new[]
+            {
+                new TodoItem
+                {
+                    Title = "Learn ASP.NET Core",
+                    DueAt = DateTimeOffset.Now.AddDays(1)
+                },
+                new TodoItem
+                {
+                    Title = "Build awesome apps",
+                    DueAt = DateTimeOffset.Now.AddDays(2)
+                }
+            };
+
+            return Task.FromResult(items);
         }
     }
 }
