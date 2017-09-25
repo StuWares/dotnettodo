@@ -28,6 +28,23 @@ namespace AspNetCoreTodo.Controllers
             // Put items into a model
             return View(model);
             // Pass the view to a model and render
+
+           
+        }
+        public async Task<IActionResult> AddItem(NewTodoItem newItem)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var successful = await _todoItemService.AddItemAsync(newItem);
+            if (!successful)
+            {
+                return BadRequest(new { error = "Could not add item"});
+            }
+
+            return Ok();
         }
     }
 }
